@@ -69,4 +69,4 @@ jobs:
           deployment_package: deploy.zip
 
       - name: Deployed!
-        run: npm start
+        run: echo App deployed to ELB
