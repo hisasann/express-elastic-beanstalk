@@ -34,6 +34,16 @@ jobs:
 #      - name: Building application
 #        run: npm run build
 
+      # 生成物を「deb」ディレクトリにコピーする
+      - name: Copy artifact
+        run: mkdir -p deb && cp -a node_modules index.js deb/
+
+      # 「deb」ディレクトリ内のファイルをアーティファクトとして保存する
+      - uses: actions/upload-artifact@v1
+        with:
+          name: code_${{ github.sha }}_artifact
+          path: deb
+
       - name: Generate deployment package
         run: zip -r deploy.zip * -x "**node_modules**"
 
