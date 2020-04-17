@@ -29,10 +29,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Installing NPM
-        run: npm install
+        run: yarn install
 
-#      - name: Building application
-#        run: npm run build
+      - name: Generate deployment package
+        run: zip -r deploy.zip *
 
       # 生成物を「deb」ディレクトリにコピーする
       - name: Copy artifact
@@ -43,9 +43,6 @@ jobs:
         with:
           name: code_${{ github.sha }}_artifact
           path: deb
-
-      - name: Generate deployment package
-        run: zip -r deploy.zip * -x "**node_modules**"
 
       - name: Get timestamp
         uses: gerred/actions/current-time@master
