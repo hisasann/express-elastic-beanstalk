@@ -72,4 +72,4 @@ jobs:
           deployment_package: deploy.zip
 
       - name: Deployed!
-        run: npm start
+        run: nohup npm start < /dev/null &
